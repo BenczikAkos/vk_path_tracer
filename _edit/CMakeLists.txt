@@ -1,12 +1,26 @@
 # Copyright 2020 NVIDIA Corporation
 # SPDX-License-Identifier: Apache-2.0
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.31)
 # Construct the project name PROJNAME from the directory name
 get_filename_component(PROJNAME ${CMAKE_CURRENT_LIST_DIR} NAME)
 set(PROJNAME "vk_mini_path_tracer_${PROJNAME}")
 project(${PROJNAME})
 
+
+find_path(BASE_DIRECTORY
+        NAMES nvpro_core/cmake/setup.cmake
+        PATHS ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/.. ${CMAKE_CURRENT_SOURCE_DIR}/../..
+        REQUIRED
+        DOC "Directory containing nvpro_core"
+)
+if(EXISTS ${BASE_DIRECTORY}/nvpro_core/cmake/setup.cmake)
+include(${BASE_DIRECTORY}/nvpro_core/cmake/setup.cmake)
+else()
+message(FATAL_ERROR "could not find base directory, please set BASE_DIRECTORY to folder containing nvpro_core")
+endif()
 #####################################################################################
+_add_package_VulkanSDK()
+_add_nvpro_core_lib()
 _add_project_definitions(${PROJNAME})
 
 #####################################################################################
