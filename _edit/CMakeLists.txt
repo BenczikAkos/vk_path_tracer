@@ -28,6 +28,7 @@ _add_project_definitions(${PROJNAME})
 #
 file(GLOB SOURCE_FILES *.cpp *.hpp *.inl *.h *.c)
 list(APPEND SOURCE_FILES path_tracer_window.cpp)
+list(APPEND SOURCE_FILES D:/nvpro_core/third_party/tinyobjloader/obj_loader.cpp)
 
 
 #####################################################################################
@@ -77,7 +78,12 @@ source_group("Shader Files" FILES ${GLSL_SOURCES})
 #####################################################################################
 # Executable
 #
-add_executable(${PROJNAME} ${SOURCE_FILES} ${COMMON_SOURCE_FILES} ${GLSL_SOURCES})
+add_executable(${PROJNAME} ${SOURCE_FILES} ${COMMON_SOURCE_FILES} ${GLSL_SOURCES}
+        ../../nvpro_core/third_party/imgui/backends/imgui_impl_glfw.cpp
+        ../../nvpro_core/third_party/imgui/backends/imgui_impl_vulkan.cpp
+        ../../nvpro_core/third_party/imgui/imgui.cpp
+        ../../nvpro_core/imgui/imgui_helper.cpp
+        ../../nvpro_core/imgui/imgui_camera_widget.cpp)
 
 #####################################################################################
 # Source code group
