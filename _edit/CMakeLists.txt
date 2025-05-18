@@ -27,6 +27,8 @@ _add_project_definitions(${PROJNAME})
 # Source files for this project
 #
 file(GLOB SOURCE_FILES *.cpp *.hpp *.inl *.h *.c)
+list(APPEND SOURCE_FILES path_tracer_window.cpp)
+
 
 #####################################################################################
 # For _edit, we add a check to make sure readers create a shaders directory
