@@ -89,6 +89,7 @@ struct PushConstantRay
   vec3  lightPosition;
   float lightIntensity;
   int   lightType;
+  float time;  // Current time for random number generation
 };
 
 struct Vertex  // See ObjLoader, copy of VertexObj, could be compressed for device

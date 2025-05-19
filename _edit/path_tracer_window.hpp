@@ -28,6 +28,7 @@ struct PushConstantRay
   glm::vec3  lightPosition;
   float lightIntensity;
   int   lightType;
+  float time;
 };
 
 // Information of a obj model when referenced in a shader

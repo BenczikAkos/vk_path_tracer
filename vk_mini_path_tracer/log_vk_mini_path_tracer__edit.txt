@@ -1,0 +1,52 @@
+_______________
+Vulkan Version:
+ - available:  1.4.309
+ - requesting: 1.4.0
+___________________________
+Available Instance Layers :
+VK_LAYER_NV_optimus (v. 1.4.303 1) : NVIDIA Optimus layer
+VK_LAYER_NV_gr2608 (v. 1.4.303 1) : NVIDIA GR2608 layer
+VK_LAYER_RENDERDOC_Capture (v. 1.3.131 26) : Debugging capture layer for RenderDoc
+VK_LAYER_EOS_Overlay (v. 1.2.136 1) : Vulkan overlay layer for Epic Online Services
+VK_LAYER_EOS_Overlay (v. 1.2.136 1) : Vulkan overlay layer for Epic Online Services
+VK_LAYER_LUNARG_api_dump (v. 1.4.309 2) : LunarG API dump layer
+VK_LAYER_LUNARG_gfxreconstruct (v. 1.4.309 400005) : GFXReconstruct Capture Layer Version 1.0.5
+VK_LAYER_KHRONOS_synchronization2 (v. 1.4.309 1) : Khronos Synchronization2 layer
+VK_LAYER_KHRONOS_validation (v. 1.4.309 1) : Khronos Validation Layer
+VK_LAYER_LUNARG_monitor (v. 1.4.309 1) : Execution Monitoring Layer
+VK_LAYER_LUNARG_screenshot (v. 1.4.309 1) : LunarG image capture layer
+VK_LAYER_KHRONOS_profiles (v. 1.4.309 1) : Khronos Profiles layer
+VK_LAYER_KHRONOS_shader_object (v. 1.4.309 1) : Khronos Shader object layer
+VK_LAYER_LUNARG_crash_diagnostic (v. 1.4.309 1) : Crash Diagnostic Layer is a crash/hang debugging tool that helps determines GPU progress in a Vulkan application.
+
+Available Instance Extensions :
+VK_EXT_debug_report (v. 10)
+VK_EXT_debug_utils (v. 2)
+VK_EXT_surface_maintenance1 (v. 1)
+VK_EXT_swapchain_colorspace (v. 5)
+VK_KHR_device_group_creation (v. 1)
+VK_KHR_external_fence_capabilities (v. 1)
+VK_KHR_external_memory_capabilities (v. 1)
+VK_KHR_external_semaphore_capabilities (v. 1)
+VK_KHR_get_physical_device_properties2 (v. 2)
+VK_KHR_get_surface_capabilities2 (v. 1)
+VK_KHR_surface (v. 25)
+VK_KHR_surface_protected_capabilities (v. 1)
+VK_KHR_win32_surface (v. 6)
+VK_NV_external_memory_capabilities (v. 1)
+VK_EXT_debug_utils (v. 2)
+______________________
+Used Instance Layers :
+VK_LAYER_KHRONOS_validation
+VK_LAYER_LUNARG_monitor
+
+Used Instance Extensions :
+VK_EXT_debug_utils
+VK_KHR_surface
+VK_KHR_win32_surface
+VK_EXT_debug_utils
+____________________
+Devices : 1
+0: Quadro RTX 4000
+  - Missing extensions: VK_KHR_ray_tracing_pipeline 
+Compatible physical devices found : OMG... NONE !!

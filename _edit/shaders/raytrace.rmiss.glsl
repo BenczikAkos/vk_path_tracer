@@ -34,5 +34,12 @@ layout(push_constant) uniform _PushConstantRay
 
 void main()
 {
-  prd.hitValue = pcRay.clearColor.xyz * 0.8;
+  // Environment lighting contribution
+  vec3 skyColor = pcRay.clearColor.xyz * 0.8;
+  
+  // Add environment contribution to accumulated color
+  prd.hitValue += prd.throughput * skyColor;
+  
+  // Terminate path
+  prd.done = true;
 }

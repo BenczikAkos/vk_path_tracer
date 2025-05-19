@@ -70,8 +70,8 @@ void renderUI(PathTracerWindow& app)
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-static int const SAMPLE_WIDTH  = 1280;
-static int const SAMPLE_HEIGHT = 720;
+static int const SAMPLE_WIDTH  = 1920;
+static int const SAMPLE_HEIGHT = 1080;
 
 
 //--------------------------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ int main(int argc, char** argv)
 
   // Setup camera
   CameraManip.setWindowSize(SAMPLE_WIDTH, SAMPLE_HEIGHT);
-  CameraManip.setLookat(glm::vec3(5, 4, -4), glm::vec3(0, 1, 0), glm::vec3(0, 1, 0));
+  CameraManip.setLookat(glm::vec3(0.78, 0.78, 3.6), glm::vec3(0.54, 0.93, 0.58), glm::vec3(0, 1, 0));
 
   // Setup Vulkan
   if(!glfwVulkanSupported())
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
 
   // Requesting Vulkan extensions and layers
   nvvk::ContextCreateInfo contextInfo;
-  contextInfo.setVersion(1, 2);                       // Using Vulkan 1.2
+  contextInfo.setVersion(1, 4);
   for(uint32_t ext_id = 0; ext_id < count; ext_id++)  // Adding required extensions (surface, win32, linux, ..)
     contextInfo.addInstanceExtension(reqExtensions[ext_id]);
   contextInfo.addInstanceLayer("VK_LAYER_LUNARG_monitor", true);              // FPS in titlebar
