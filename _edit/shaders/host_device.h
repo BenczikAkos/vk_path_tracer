@@ -53,7 +53,7 @@ END_BINDING();
 // clang-format on
 
 
-// Information of a obj model when referenced in a shader
+// Information of an obj model when referenced in a shader
 struct ObjDesc
 {
   int      txtOffset;             // Texture index offset in the array of textures
@@ -79,6 +79,8 @@ struct PushConstantRaster
   uint  objIndex;
   float lightIntensity;
   int   lightType;
+  float time;
+  int   frame;
 };
 
 
@@ -90,6 +92,7 @@ struct PushConstantRay
   float lightIntensity;
   int   lightType;
   float time;  // Current time for random number generation
+  int frame;
 };
 
 struct Vertex  // See ObjLoader, copy of VertexObj, could be compressed for device

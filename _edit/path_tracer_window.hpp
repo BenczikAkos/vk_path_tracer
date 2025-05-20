@@ -29,6 +29,7 @@ struct PushConstantRay
   float lightIntensity;
   int   lightType;
   float time;
+  int   frameCount;  // Counter for accumulated frames
 };
 
 // Information of a obj model when referenced in a shader

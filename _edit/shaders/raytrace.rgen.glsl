@@ -51,7 +51,7 @@ void main()
 {
   const vec2 pixelCenter = vec2(gl_LaunchIDEXT.xy);
   const vec2 inUV = pixelCenter / vec2(gl_LaunchSizeEXT.xy);
-  
+
   // Number of samples per pixel
   const int NUM_SAMPLES = 4;  // You can adjust this value
   vec3 finalColor = vec3(0.0);
@@ -99,11 +99,8 @@ void main()
     }
 
     // Accumulate the result
-    finalColor += prd.hitValue;
+    finalColor += prd.hitValue / float(NUM_SAMPLES);
   }
-
-  // Average the results
-  finalColor /= float(NUM_SAMPLES);
 
   // Store final color
   imageStore(image, ivec2(gl_LaunchIDEXT.xy), vec4(finalColor, 1.0));

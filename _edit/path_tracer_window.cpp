@@ -920,6 +920,7 @@ void PathTracerWindow::raytrace(const VkCommandBuffer& cmdBuf, const glm::vec4& 
   m_pcRay.lightIntensity = m_pcRaster.lightIntensity;
   m_pcRay.lightType      = m_pcRaster.lightType;
   m_pcRay.time           = static_cast<float>(glfwGetTime());  // Get current time
+  m_pcRay.frameCount++;  // Increment frame counter
 
   std::vector<VkDescriptorSet> descSets{m_rtDescSet, m_descSet};
   vkCmdBindPipeline(cmdBuf, VK_PIPELINE_BIND_POINT_RAY_TRACING_KHR, m_rtPipeline);
