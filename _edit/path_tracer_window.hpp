@@ -29,7 +29,9 @@ struct PushConstantRay
   float lightIntensity;
   int   lightType;
   float time;
-  int   frameCount;  // Counter for accumulated frames
+  int   frame;
+  glm::vec3 cameraPosition;  // Current camera position
+  glm::vec3 prevCameraPosition;  // Previous camera position
 };
 
 // Information of a obj model when referenced in a shader
