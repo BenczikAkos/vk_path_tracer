@@ -52,14 +52,15 @@ void main()
   const vec2 pixelCenter = vec2(gl_LaunchIDEXT.xy);
   const vec2 inUV = pixelCenter / vec2(gl_LaunchSizeEXT.xy);
 
-  // Number of samples per pixel
+  // Number of samples per pixel per frame
   const int NUM_SAMPLES = 4;  // You can adjust this value
   vec3 finalColor = vec3(0.0);
 
   // Trace multiple rays per pixel
   for(int i = 0; i < NUM_SAMPLES; i++) {
     // Add random offset to pixel center for anti-aliasing
-    vec2 offset = randomPixelOffset(pixelCenter, pcRay.time + float(i));
+    // Use both frame count and sample index for better randomization
+    vec2 offset = randomPixelOffset(pixelCenter, pcRay.time + float(i) + float(pcRay.frame) * 0.1);
     vec2 d = (pixelCenter + offset) / vec2(gl_LaunchSizeEXT.xy) * 2.0 - 1.0;
 
     // Initialize camera ray
@@ -102,6 +103,18 @@ void main()
     finalColor += prd.hitValue / float(NUM_SAMPLES);
   }
 
-  // Store final color
-  imageStore(image, ivec2(gl_LaunchIDEXT.xy), vec4(finalColor, 1.0));
+  // Get the current accumulated color
+  vec4 currentColor = imageLoad(image, ivec2(gl_LaunchIDEXT.xy));
+  
+  // If this is the first frame, initialize with the new color
+  if (pcRay.frame == 0) {
+    imageStore(image, ivec2(gl_LaunchIDEXT.xy), vec4(finalColor, 1.0));
+  } else {
+    // Accumulate the new color with the existing color
+    // Use exponential moving average for better temporal stability
+      vec4 storedColor = imageLoad(image, ivec2(gl_LaunchIDEXT.xy));
+      float alpha = 1.0/pcRay.frame; // Adjust this value to control the accumulation rate (0.0 to 1.0)
+      vec3 accumulatedColor = mix(storedColor.rgb, finalColor, alpha);
+      imageStore(image, ivec2(gl_LaunchIDEXT.xy), vec4(accumulatedColor, 1.0));
+  }
 }
