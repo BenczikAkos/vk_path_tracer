@@ -75,6 +75,7 @@ public:
   void createTextureImages(const VkCommandBuffer& cmdBuf, const std::vector<std::string>& textures);
   void updateUniformBuffer(const VkCommandBuffer& cmdBuf);
   void onResize(int /*w*/, int /*h*/) override;
+  void onKeyboardChar(unsigned char key) override;
   void destroyResources();
   void rasterize(const VkCommandBuffer& cmdBuff);
 

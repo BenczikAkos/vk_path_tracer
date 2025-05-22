@@ -27,6 +27,7 @@
 
 #include "path_tracer_window.hpp"
 #include "nvh/alignment.hpp"
+#include "nvh/cameracontrol.hpp"
 #include "nvh/cameramanipulator.hpp"
 #include "nvh/fileoperations.hpp"
 #include "nvvk/commands_vk.hpp"
@@ -444,6 +445,45 @@ void PathTracerWindow::onResize(int /*w*/, int /*h*/)
     updateRtDescriptorSet();
 }
 
+void PathTracerWindow::onKeyboardChar(unsigned char key)
+{
+    glm::vec3 currentEye, currentLookAt, currentUp;
+    CameraManip.getLookat(currentEye, currentLookAt, currentUp);
+    glm::vec3 speed = glm::vec3(0.5);
+    if (key == 'q')
+    {
+        currentEye    += glm::vec3(0.0f, -1.0f, 0.0f) * speed;
+        currentLookAt += glm::vec3(0.0f, -1.0f, 0.0f) * speed;
+    }
+    if (key == 'e')
+    {
+        currentEye    += glm::vec3(0.0f, 1.0f, 0.0f) * speed;
+        currentLookAt += glm::vec3(0.0f, 1.0f, 0.0f) * speed;
+    }
+    if (key == 'a')
+    {
+        currentEye    += glm::vec3(-1.0f, 0.0f, 0.0f) * speed;
+        currentLookAt += glm::vec3(-1.0f, 0.0f, 0.0f) * speed;
+    }
+    if (key == 'd')
+    {
+        currentEye    += glm::vec3(1.0f, 0.0f, 0.0f) * speed;
+        currentLookAt += glm::vec3(1.0f, 0.0f, 0.0f) * speed;
+    }
+    if (key == 'w')
+    {
+        currentEye    += glm::vec3(0.0f, 0.0f, -1.0f) * speed;
+        currentLookAt += glm::vec3(0.0f, 0.0f, -1.0f) * speed;
+    }
+    if (key == 's')
+    {
+        currentEye    += glm::vec3(0.0f, 0.0f, 1.0f) * speed;
+        currentLookAt += glm::vec3(0.0f, 0.0f, 1.0f) * speed;
+    }
+    CameraManip.setLookat(currentEye, currentLookAt, currentUp, true);
+    AppBaseVk::onKeyboardChar(key);
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // Post-processing
@@ -630,6 +670,9 @@ auto PathTracerWindow::objectToVkGeometryKHR(const ObjModel& model)
     triangles.vertexFormat = VK_FORMAT_R32G32B32_SFLOAT; // vec3 vertex position data.
     triangles.vertexData.deviceAddress = vertexAddress;
     triangles.vertexStride = sizeof(VertexObj);
+    // Add normal data
+    // triangles.vertexData.deviceAddress = vertexAddress + offsetof(VertexObj, nrm);
+    // triangles.vertexStride = sizeof(VertexObj);
     // Describe index data (32-bit unsigned int)
     triangles.indexType = VK_INDEX_TYPE_UINT32;
     triangles.indexData.deviceAddress = indexAddress;
