@@ -159,7 +159,7 @@ int main(int argc, char** argv)
   app.initGUI(0);  // Using sub-pass 0
 
   // Creation of the example
-  app.loadModel(nvh::findFile("scenes/cornell-onelight.obj", defaultSearchPaths, true));
+  app.loadModel(nvh::findFile("scenes/colored-sub.obj", defaultSearchPaths, true));
 
   app.createOffscreenRender();
   app.createDescriptorSetLayout();
